@@ -8,7 +8,6 @@
 #include <set>
 #include "TextQuery.h"
 
-std::ostream& print(std::ostream &os, const QueryResult &qr);
 class QueryResult {
     friend std::ostream& print(std::ostream &os, const QueryResult &qr);
 
