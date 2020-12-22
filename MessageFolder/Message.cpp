@@ -63,3 +63,25 @@ void Message::print() {
         f->print();
     }
 }
+
+void Message::move_folders(Message *m) {
+    folders = std::move(m->folders);
+    for (auto f : folders) {
+        f->remMsg(m);
+        f->addMsg(this);
+    }
+    m->folders.clear();
+}
+
+Message::Message(Message &&m): content(std::move(m.content)) {
+    move_folders(&m);
+}
+
+Message& Message::operator=(Message &&rhs) {
+    if (this != &rhs) {
+        remove_from_folders();
+        content = std::move(rhs.content);
+        move_folders(&rhs);
+    }
+    return *this;
+}

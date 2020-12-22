@@ -17,10 +17,13 @@ public:
     explicit Message(std::string str): content(std::move(str)) { }
     Message (const Message&);
     Message& operator=(const Message&);
+    Message& operator=(const Message&&);
+    Message (Message&&);
     ~Message();
     void save(Folder&);
     void remove(Folder&);
     void print();
+    void move_folders(Message*);
 
 private:
     std::string content;
