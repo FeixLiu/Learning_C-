@@ -11,7 +11,8 @@ public:
     StrVec():
         elements(nullptr), first_free(nullptr), cap(nullptr) { }
     StrVec(const StrVec&);
-    StrVec & operator=(const StrVec&);
+    StrVec &operator=(const StrVec&);
+    StrVec &operator=(std::initializer_list<std::string>);
     ~StrVec();
     void push_back(const std::string&);
     size_t size() const {
