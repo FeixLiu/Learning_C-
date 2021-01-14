@@ -1,4 +1,5 @@
-#include<iostream>
+#include <iostream>
+#include <string>
 # include "Blob.h"
 using namespace std;
 
@@ -8,5 +9,8 @@ int main() {
         squares[i] = squares[i] * squares[i];
     for (size_t i = 0; i != squares.size(); i++)
         cout << squares[i] << endl;
+    Blob<int> test = {7, 8, 9, 20};
+    cout << (squares == test) << endl;
+    cout << (squares == squares) << endl;
     return 0;
 }

@@ -10,8 +10,12 @@
 #include <utility>
 #include <initializer_list>
 
+template <typename T> class Blob;
+template <typename T> bool operator==(const Blob<T>&, const Blob<T>&);
+
 template <typename T>
 class Blob {
+    friend bool operator==<T>(const Blob<T>&, const Blob<T>&);
 public:
     typedef T value_type;
     typedef typename std::vector<T>::size_type size_type;
@@ -70,5 +74,10 @@ Blob<T>::Blob(): data(std::make_shared<std::vector<T>>()) { }
 
 template <typename T>
 Blob<T>::Blob(std::initializer_list<T> il): data(std::make_shared<std::vector<T>>(il)) { }
+
+template <typename T>
+bool operator==(const Blob<T> &lhs, const Blob<T> &rhs) {
+    return lhs.data == rhs.data;
+}
 
 #endif //C___BLOB_H
